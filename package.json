@@ -1,0 +1,9 @@
+{
+  "name": "redirects-cli",
+  "version": "1.0.0",
+  "description": "List http redirects for a URL",
+  "main": "index.js",
+  "repository": "git@github.com:tbasse/redirects-cli.git",
+  "author": "tgdb77@gmail.com",
+  "license": "MIT"
+}
