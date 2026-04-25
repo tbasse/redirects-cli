@@ -46,9 +46,13 @@ function makeRequest() {
     if (response.statusCode >= 300 && response.statusCode <= 399) {
       console.log(`${response.statusCode} -> ${response.headers.location}`);
       count++;
-      options.url = urlUtil.resolve(url, response.headers.location);
+      // Drain the current response so the socket can be reused/closed cleanly.
+      response.resume();
+      options.url = urlUtil.resolve(options.url, response.headers.location);
       makeRequest();
     } else {
+      // Drain the final response body so the process can exit promptly.
+      response.resume();
       console.log(
         `${response.statusCode} // ${response.headers['content-type']}`
       );
